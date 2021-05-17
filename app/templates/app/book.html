@@ -1,0 +1,66 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Books{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+     <!-- Side Bar for Mobile filter -->
+  <div class="col-sm-3">
+     <div class="card">
+         <div class="card-body">
+            <div class="list-group">
+                <a href="{% url 'book' %}" class="list-group-item list-group-item-action" aria-current="true">All Books</a>
+            </div>
+            <div class="list-group my-1">
+              <a href="{% url 'bookdata' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">Below 200</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'bookdata' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">Above 200</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'bookdata' 'RobinSharma' %}" class="list-group-item list-group-item-action" aria-current="true">Robin Sharma</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'bookdata' 'Kalam' %}" class="list-group-item list-group-item-action" aria-current="true"> A. P. J. Abdul Kalam</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'bookdata' 'Robert' %}" class="list-group-item list-group-item-action" aria-current="true">Robert Kiyosaki</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'bookdata' 'NapoleanHill' %}" class="list-group-item list-group-item-action" aria-current="true">Napolean Hill</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'bookdata' 'George' %}" class="list-group-item list-group-item-action" aria-current="true">George Mathew</a>
+          </div>
+          <div class="list-group">
+              <a href="{% url 'bookdata' 'JeffKeller' %}" class="list-group-item list-group-item-action" aria-current="true">Jeff Keller</a>
+          </div>
+         
+         </div>
+     </div>
+    
+  </div>
+  <div class="col-sm-9">
+   <!-- Mobile Product List -->
+   <div class="card">
+       <div class="card-body">
+        <div class="row">
+            {% for product in book %}
+            <div class="col-sm-4 text-center mb-4">
+                <a href="{% url 'product-detail' product.id %}" class="btn">
+                <div class="item">
+                    <img class="img-thumbnail" src="{{product.product_image.url}}" height="300" alt="">
+                    <div class="fw-bold">{{product.title}}</div>
+                    <div class="fw-bold"><span>&#8377;</span>{{product.discount_price|floatformat:"-3g"}}
+                    <small class="fw-light text-decoration-line-through"><span>&#8377;</span>{{product.price|floatformat:"-3g"}}</small></div>
+                </div>
+                </a>
+             </div>
+            {% endfor %}
+        </div>
+       </div>
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

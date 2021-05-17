@@ -1,0 +1,25 @@
+
+.owl-next{
+ float:right;
+
+}
+.owl-prev{
+ float:left;
+}
+
+.owl-prev span{
+ font-size: 40px;
+ font-weight: bold;
+}
+.owl-next span{
+ font-size: 40px;
+ font-weight: bold;
+}
+
+body{
+    background-color: rgb(229, 239, 238);
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
+
+
+}

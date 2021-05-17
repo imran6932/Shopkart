@@ -1,0 +1,66 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Mobiles{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+     <!-- Side Bar for Mobile filter -->
+  <div class="col-sm-3">
+      <div class="card">
+          <div class="card-body">
+            <div class="list-group">
+                <a href="{% url 'mobile' %}" class="list-group-item list-group-item-action" aria-current="true">All Mobiles</a>
+            </div>
+            <div class="list-group my-1">
+              <a href="{% url 'mobiledata' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">Below 10k</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'mobiledata' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">Above 10k</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'mobiledata' 'Apple' %}" class="list-group-item list-group-item-action" aria-current="true">Apple</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'mobiledata' 'Xiaomi' %}" class="list-group-item list-group-item-action" aria-current="true">Xiaomi</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'mobiledata' 'Realme' %}" class="list-group-item list-group-item-action" aria-current="true">Realme</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'mobiledata' 'Samsung' %}" class="list-group-item list-group-item-action" aria-current="true">Samsung</a>
+          </div>
+          <div class="list-group my-1">
+              <a href="{% url 'mobiledata' 'Lg' %}" class="list-group-item list-group-item-action" aria-current="true">Lg</a>
+          </div>
+          <div class="list-group">
+              <a href="{% url 'mobiledata' 'Poco' %}" class="list-group-item list-group-item-action" aria-current="true">Poco</a>
+          </div>
+         
+          </div>
+      </div>
+    
+  </div>
+  <div class="col-sm-9">
+   <!-- Mobile Product List -->
+   <div class="card">
+       <div class="card-body">
+        <div class="row">
+            {% for product in mobiles %}
+            <div class="col-sm-4 text-center mb-4">
+                <a href="{% url 'product-detail' product.id %}" class="btn">
+                <div class="item">
+                    <img class="img-thumbnail" src="{{product.product_image.url}}" height="300" alt="">
+                    <div class="fw-bold">{{product.title}}</div>
+                    <div class="fw-bold"><span>&#8377;</span>{{product.discount_price|floatformat:"-3g"}}
+                    <small class="fw-light text-decoration-line-through"><span>&#8377;</span>{{product.price|floatformat:"-3g"}}</small></div>
+                </div>
+                </a>
+             </div>
+            {% endfor %}
+        </div>
+       </div>
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

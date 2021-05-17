@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Customer Addresses{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-2 border-end">
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'profile' %}" class="btn">Profile</a></li>
+    <li class="d-grid"><a href="{% url 'address' %}" class="btn {{active}}">My Address</a></li>
+    <li class="d-grid"><a href="{% url 'orders' %}" class="btn">My Orders</a></li>
+    <li class="d-grid"><a href="{% url 'changepassword' %}" class="btn">Change Password</a></li>
+   </ul>
+  </div>
+  <div class="col-sm-9 offset-sm-1">
+    {% for message in messages %}
+    <p {% if message.tags %} class=" text-center text-white bg-danger alert alert-{{message.tags}}"{% endif %}>{{message}}</p>
+    {% endfor %}
+      <h4><a class="text-decoration-none" href="{% url 'add_profile' %}">+Add New Address</a></h4>
+   <div class="row">
+       {% for ad in add %}
+    <div class="col-sm-3 lh-1">
+     <div class="card text-center my-1">
+      <div class="card-body">
+       <h4 class="card-header">Address {{forloop.counter}}</h4>
+        <p class="card-title"><strong>{{ad.name}}</strong></p>
+        <p class="card-title">{{ad.locality}},{{ad.city}}</p>
+        <p class="card-title">{{ad.state}}-{{ad.pin}}</p>
+       <a href="{% url 'update' ad.id %}" class="btn btn-warning">Edit</a>
+        <form action="{% url 'delete' ad.id %}" method="post" class="d-inline" >
+            {% csrf_token %}
+        <input  type="submit" value="Delete" class="btn btn-danger mx-3">
+        </form>
+      </div>
+     </div>
+    </div>
+    {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
