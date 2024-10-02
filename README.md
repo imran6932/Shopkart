@@ -8,5 +8,4 @@ used claudinary for media file storage
 
 
 
-# Deployed on heroku......link is below 
-link https://imran-shopkart.herokuapp.com/
+
